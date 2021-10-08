@@ -19,7 +19,7 @@ jobs:
                   path: dist
 
     deploy:
-        needs: [dist] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+        needs: [build] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
         runs-on: ubuntu-latest
         steps:
             - name: Checkout #🛎️
@@ -34,4 +34,4 @@ jobs:
               uses: JamesIves/github-pages-deploy-action@4.1.5
               with:
                   branch: master
-                  folder: "site" # The deployment folder should match the name of the artifact. Even though our project dists into the 'dist' folder the artifact name of 'site' must be placed here.
+                  folder: "site" # The deployment folder should match the name of the artifact. Even though our project builds into the 'build' folder the artifact name of 'site' must be placed here.
